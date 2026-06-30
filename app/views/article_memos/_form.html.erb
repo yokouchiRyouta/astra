@@ -1,37 +1,28 @@
 <%= form_with(model: article_memo) do |form| %>
   <% if article_memo.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(article_memo.errors.count, "error") %> prohibited this article_memo from being saved:</h2>
-
-      <ul>
-        <% article_memo.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+    <div class="flash alert">
+      <% article_memo.errors.each do |error| %><div><%= error.full_message %></div><% end %>
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :title, style: "display: block" %>
+  <div class="form-group">
+    <%= form.label :title %>
     <%= form.text_field :title %>
   </div>
-
-  <div>
-    <%= form.label :body, style: "display: block" %>
+  <div class="form-group">
+    <%= form.label :body %>
     <%= form.textarea :body %>
   </div>
-
-  <div>
-    <%= form.label :category, style: "display: block" %>
+  <div class="form-group">
+    <%= form.label :category %>
     <%= form.text_field :category %>
   </div>
-
-  <div>
-    <%= form.label :status, style: "display: block" %>
+  <div class="form-group">
+    <%= form.label :status %>
     <%= form.text_field :status %>
   </div>
-
-  <div>
-    <%= form.submit %>
+  <div class="form-actions">
+    <%= form.submit class: "btn btn-primary" %>
+    <%= link_to "Cancel", article_memos_path, class: "btn btn-secondary" %>
   </div>
 <% end %>

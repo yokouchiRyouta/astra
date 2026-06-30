@@ -1,16 +1,30 @@
-<p style="color: green"><%= notice %></p>
+<h1>Article Memos</h1>
+<%= link_to "+ New Memo", new_article_memo_path, class: "btn btn-primary", style: "margin-bottom:20px;display:inline-block" %>
 
-<% content_for :title, "Article memos" %>
-
-<h1>Article memos</h1>
-
-<div id="article_memos">
-  <% @article_memos.each do |article_memo| %>
-    <%= render article_memo %>
-    <p>
-      <%= link_to "Show this article memo", article_memo %>
-    </p>
-  <% end %>
+<div class="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Category</th>
+        <th>Status</th>
+        <th>Body</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @article_memos.each do |memo| %>
+        <tr>
+          <td><%= memo.title %></td>
+          <td><span class="badge badge-default"><%= memo.category %></span></td>
+          <td><span class="badge badge-default"><%= memo.status %></span></td>
+          <td><%= truncate(memo.body, length: 50) %></td>
+          <td style="white-space:nowrap">
+            <%= link_to "Edit", edit_article_memo_path(memo), class: "btn btn-secondary btn-sm" %>
+            <%= link_to "Delete", article_memo_path(memo), data: { turbo_method: :delete, turbo_confirm: "削除しますか?" }, class: "btn btn-danger btn-sm" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
-
-<%= link_to "New article memo", new_article_memo_path %>

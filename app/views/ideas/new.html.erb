@@ -1,11 +1,4 @@
-<% content_for :title, "New idea" %>
-
-<h1>New idea</h1>
-
-<%= render "form", idea: @idea %>
-
-<br>
-
-<div>
-  <%= link_to "Back to ideas", ideas_path %>
+<h1>New Idea</h1>
+<div class="form-card">
+  <%= render "form", idea: @idea %>
 </div>

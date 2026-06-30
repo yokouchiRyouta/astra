@@ -1,12 +1,4 @@
-<% content_for :title, "Editing article memo" %>
-
-<h1>Editing article memo</h1>
-
-<%= render "form", article_memo: @article_memo %>
-
-<br>
-
-<div>
-  <%= link_to "Show this article memo", @article_memo %> |
-  <%= link_to "Back to article memos", article_memos_path %>
+<h1>Edit Article Memo</h1>
+<div class="form-card">
+  <%= render "form", article_memo: @article_memo %>
 </div>

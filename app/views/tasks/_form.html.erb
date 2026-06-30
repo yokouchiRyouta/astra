@@ -1,37 +1,28 @@
 <%= form_with(model: task) do |form| %>
   <% if task.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
-
-      <ul>
-        <% task.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+    <div class="flash alert">
+      <% task.errors.each do |error| %><div><%= error.full_message %></div><% end %>
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :title, style: "display: block" %>
+  <div class="form-group">
+    <%= form.label :title %>
     <%= form.text_field :title %>
   </div>
-
-  <div>
-    <%= form.label :description, style: "display: block" %>
+  <div class="form-group">
+    <%= form.label :description %>
     <%= form.textarea :description %>
   </div>
-
-  <div>
-    <%= form.label :status, style: "display: block" %>
+  <div class="form-group">
+    <%= form.label :status %>
     <%= form.text_field :status %>
   </div>
-
-  <div>
-    <%= form.label :due_date, style: "display: block" %>
+  <div class="form-group">
+    <%= form.label :due_date %>
     <%= form.date_field :due_date %>
   </div>
-
-  <div>
-    <%= form.submit %>
+  <div class="form-actions">
+    <%= form.submit class: "btn btn-primary" %>
+    <%= link_to "Cancel", tasks_path, class: "btn btn-secondary" %>
   </div>
 <% end %>

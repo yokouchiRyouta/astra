@@ -1,6 +1,21 @@
 <h1>Dashboard</h1>
-<ul>
-  <li><%= link_to "Ideas", ideas_path %></li>
-  <li><%= link_to "Tasks", tasks_path %></li>
-  <li><%= link_to "Article Memos", article_memos_path %></li>
-</ul>
+
+<div class="dashboard-cards">
+  <%= link_to ideas_path, class: "card" do %>
+    <span class="card-icon">💡</span>
+    <span class="card-title">Ideas</span>
+    <span class="card-desc">アイデアを管理する</span>
+  <% end %>
+
+  <%= link_to tasks_path, class: "card" do %>
+    <span class="card-icon">✅</span>
+    <span class="card-title">Tasks</span>
+    <span class="card-desc">タスクを管理する</span>
+  <% end %>
+
+  <%= link_to article_memos_path, class: "card" do %>
+    <span class="card-icon">📝</span>
+    <span class="card-title">Article Memos</span>
+    <span class="card-desc">記事メモを管理する</span>
+  <% end %>
+</div>

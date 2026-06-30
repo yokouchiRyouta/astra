@@ -3,26 +3,37 @@
   <head>
     <title><%= content_for(:title) || "Astra" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="application-name" content="Astra">
-    <meta name="mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= yield :head %>
-
-    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
-    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
-
-    <link rel="icon" href="/icon.png" type="image/png">
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/icon.png">
-
-    <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag "application" %>
   </head>
 
   <body>
-    <%= yield %>
+    <aside class="sidebar">
+      <%= link_to "✦ Astra", root_path, class: "sidebar-brand" %>
+      <nav class="sidebar-nav">
+        <%= link_to root_path, class: "#{current_page?(root_path) ? 'active' : ''}" do %>
+          <span class="nav-icon">⊞</span> Dashboard
+        <% end %>
+        <%= link_to ideas_path, class: "#{controller_name == 'ideas' ? 'active' : ''}" do %>
+          <span class="nav-icon">💡</span> Ideas
+        <% end %>
+        <%= link_to tasks_path, class: "#{controller_name == 'tasks' ? 'active' : ''}" do %>
+          <span class="nav-icon">✓</span> Tasks
+        <% end %>
+        <%= link_to article_memos_path, class: "#{controller_name == 'article_memos' ? 'active' : ''}" do %>
+          <span class="nav-icon">📝</span> Article Memos
+        <% end %>
+      </nav>
+    </aside>
+
+    <div class="main-wrapper">
+      <div class="topbar"><%= request.path %></div>
+      <main class="content">
+        <% if notice %><div class="flash notice"><%= notice %></div><% end %>
+        <% if alert %><div class="flash alert"><%= alert %></div><% end %>
+        <%= yield %>
+      </main>
+    </div>
   </body>
 </html>
