@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: astra
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: RAILS_MASTER_KEY
+        sync: false
+      - key: DATABASE_URL
+        fromDatabase:
+          name: astra-db
+          property: connectionString
+    autoDeploy: true
+
+databases:
+  - name: astra-db
+    databaseName: astra_production
+    user: astra
+    plan: free

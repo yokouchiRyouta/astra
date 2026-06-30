@@ -1,0 +1,2 @@
+class ArticleMemo < ApplicationRecord
+end
